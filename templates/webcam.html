@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Open webcam using JavaScript. </title>
+</head>
+<body>
+   <h1>Open WebCam Using JavaScript</h1>
+   <br/>
+   <button id="startBtn" onclick="openCam()">Open Webcam</button>
+   <button id="stopBtn" onclick="stopCam()" style="display:none">Stop Streaming</button>
+   <br/><br/>
+   <video id="videoCam"></video>
+   <br/><br/>
+   <div id="emotion_result">Emotion Result: no emotion detected;</div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"></script>
+   <script>
+      var mediaRecorder;
+      var socket;
+      var video;
+      var stream;
+
+   function openCam(){
+   let All_mediaDevices=navigator.mediaDevices
+   console.log(All_mediaDevices)
+   All_mediaDevices.getUserMedia({
+      audio: false,
+      video: true
+   })
+   .then(function(vidStream) {
+      stream=vidStream
+      video = document.getElementById('videoCam');
+      document.getElementById("stopBtn").style.display = "block";
+      if ("srcObject" in video) {
+         video.srcObject = vidStream;
+      } else {
+         video.src = window.URL.createObjectURL(vidStream);
+      }
+      video.onloadedmetadata = function(e) {
+         video.play();
+      };
+
+      // Create a WebSocket connection to the Flask backend server
+      // "https://vivid-talent-386116.uc.r.appspot.com"
+      socket = io.connect();
+      socket.on('connect', function() {
+         console.log("WebSocket connection established!");
+         // Record the video stream using MediaRecorder API and send the recorded video to the server using WebSockets
+         mediaRecorder = new MediaRecorder(vidStream);
+         mediaRecorder.ondataavailable = function(e) {
+            var canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+            var binary = atob(dataURL.split(',')[1]);
+            var array = [];
+            for(var i = 0; i < binary.length; i++) {
+               array.push(binary.charCodeAt(i));
+            }
+            var blob = new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+            socket.emit('video_feed', blob);
+            console.log(blob);
+         }
+         mediaRecorder.start(1000);
+
+         // Receive the emotion result from the Flask server and display it on the frontend
+         socket.on('emotion_result', function(data) {
+            var emotion_result = data.result;
+            var emotion_div = document.getElementById("emotion_result");
+            emotion_div.innerHTML = "Emotion Result: " + emotion_result;
+            console.log(emotion_result);
+         });
+      });
+   })
+   .catch(function(e) {
+      console.log(e.name + ": " + e.message);
+   });
+}
+
+
+
+      function stopCam() {
+         video.pause();
+         video.src = "";
+         stream.getTracks().forEach(function(track) {
+            track.stop();
+         });
+         mediaRecorder.stop();
+         socket.disconnect();
+
+         // Hide the "Stop Streaming" button
+         document.getElementById("stopBtn").style.display = "none";
+         console.log("WebSocket connection closed!");
+      }
+   </script>
+</body>
+</html>
+

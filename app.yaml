@@ -1,0 +1,15 @@
+runtime: python
+
+env: flex
+
+# Add the following code to specify entrypoint for your application
+entrypoint: gunicorn -w 1 -b :$PORT main:app --worker-class eventlet --reload
+
+# Add the following code to specify resources for your application
+manual_scaling:
+  instances: 1
+
+network:
+  session_affinity: true
+runtime_config: 
+  python_version: 3.7
