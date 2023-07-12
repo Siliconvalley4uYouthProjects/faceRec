@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nexclap</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style4.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style5.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style7.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleRegister.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <link rel="icon" type="image/ico"
+        href="https://storage.googleapis.com/nexclap-234019.appspot.com/Images%2F66016definedlogo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#search').keyup(function () {
+                var current_query = $('#search').val();
+                if (current_query !== "") {
+                    current_query = current_query[0].toUpperCase() + current_query.slice(1);
+                    $(".list-group li").hide();
+                    $(".list-group li").each(function () {
+                        var current_keyword = $(this).text();
+                        if (current_keyword.indexOf(current_query) >= 0) {
+                            $(this).show();
+                        };
+                    });
+                } else {
+                    $(".list-group li").show();
+                };
+            });
+        });
+    </script>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n, idName) {
+            showSlides(slideIndex += n, idName);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n, idName) {
+            showSlides(slideIndex = n, idName);
+        }
+
+        function showSlides(n, idName) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides +" + idName);
+            var dots = document.getElementsByClassName("dot +" + idName);
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active2", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active2";
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139603644-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139603644-1');
+    </script>
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+
+
+        .product-device {
+            position: absolute;
+            right: 10%;
+            bottom: -30%;
+            width: 300px;
+            height: 540px;
+            background-color: #333;
+            border-radius: 21px;
+            -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+        }
+
+        .product-device::before {
+            position: absolute;
+            top: 10%;
+            right: 10px;
+            bottom: 10%;
+            left: 10px;
+            content: "";
+            background-color: rgba(255, 255, 255, .1);
+            border-radius: 5px;
+        }
+
+        .product-device-2 {
+            top: -25%;
+            right: auto;
+            bottom: 0;
+            left: 5%;
+            background-color: #e5e5e5;
+        }
+
+
+        /*
+ * Extra utilities
+ */
+
+        .border-top {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .box-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        }
+
+        .flex-equal>* {
+            -ms-flex: 1;
+            -webkit-box-flex: 1;
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .flex-md-equal>* {
+                -ms-flex: 1;
+                -webkit-box-flex: 1;
+                flex: 1;
+            }
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+        body {
+            background-color: #eee
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px
+        }
+
+        .c-details span {
+            font-weight: 300;
+            font-size: 13px
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            background-color: #eee;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .badge span {
+            background-color: #fffbec;
+            width: 60px;
+            height: 25px;
+            padding-bottom: 3px;
+            border-radius: 5px;
+            display: flex;
+            color: #fed85d;
+            justify-content: center;
+            align-items: center
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 10px
+        }
+
+        .progress div {
+            background-color: red
+        }
+
+        .text1 {
+            font-size: 14px;
+            font-weight: 600
+        }
+
+        .text2 {
+            color: #a5aec0
+        }
+        .sentence1 {
+            font-weight: bold;
+            color: black;
+            font-size: 18px;
+        }
+
+        .sentence2 {
+            font-weight: normal;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    {% extends "baseSocial.html" %}
+    {% block content %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    {% if show == "no" %}
+    <main role="main" class="container">
+        <br>
+        <div class="row">
+            <!-- Rest of the HTML code -->
+            <!-- Hidden Form Table Button -->
+            {% if current_user.category == "organization" or current_user.urlid == "Nexclap43194" or current_user.urlid == "Siliconvalley4u" or current_user.urlid == "JieLiu" %}
+            <button type="button" id="btnpost" class="btn btn-outline-info btn-lg mr-2 text-left "
+                data-mdb-toggle="modal" class="btn btn-primary active" data-toggle="modal" data-target="#postProjecct">
+                <i class="fas fa-plus mr-1"></i>
+                <strong>Create new Project</strong>
+            </button>
+            {% endif %}
+
+            <!-- Rest of the HTML code -->
+
+            <!-- Hidden Form Table -->
+            <div id="postProjecct" class="modal fade" role="dialog">
+
+                <div class="modal-dialog modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Write a Project</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <form id="formy" action="{{ url_for('createProject') }}" method="POST"
+                                enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="title">Project Title:</label>
+                                    <input type="text" id="title" name="title" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tags">tools needed</label>
+                                    <input type="text" id="tools_needed" name="tools_needed" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="badge_needed">badge needed</label>
+                                    <input type="text" id="badge_needed" name="badge_needed" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="acceptance_criteria">acceptance_criteria</label>
+                                    <input type="text" id="acceptance_criteria" name="acceptance_criteria"
+                                        placeholder="" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="projecttext">Project Description:</label>
+                                    <textarea name="description" id="description" cols="45">
+
+                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="m1">Milestone 1</label>
+                                    <input type="text" id="m1" name="m1" placeholder="" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="m2">Milestone 2</label>
+                                    <input type="text" id="m2" name="m2" placeholder="" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="m3">Milestone 3</label>
+                                    <input type="text" id="m3" name="m3" placeholder="" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="m4">Milestone 4</label>
+                                    <input type="text" id="m4" name="m4" placeholder="" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="num_of_resources">num of resources</label>
+                                    <input type="text" id="num_of_resources" name="num_of_resources"
+                                        placeholder="type a num" size="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expected_date">Expected Date</label>
+                                    <input type="date" id="expected_date" name="expected_date" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="experience_level">Experience Level</label>
+                                    <input type="text" id="experience_level" name="experience_level"
+                                        placeholder="Junior or Senior" size="10">
+                                </div>
+                                <button id="submitProject" type="submit" class="btn btn-md btn-primary">Submit</button>
+
+                            </form>
+
+                        </div>
+                        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </main>    
+    <section id="icon-boxes" class="p-5">
+        <div class="container">
+            <div class="row mb-4">
+                {% for new_project in new_projects %}
+                <div class="col-md-4">
+                    <div class="card p-3 mb-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="icon">
+                                    <img src="{{ new_project.company.profile_image }}" alt="Icon" class="icon-image">
+                                </div>
+                                <div class="ms-2 c-details">
+                                    <h6 class="mb-0">{{ new_project.company.username }}</h6> <span>1 days ago</span>
+                                </div>
+                            </div>
+                            <div class="badge"> <span>Level {{ new_project.project.badge_needed }}</span> </div>
+                        </div>
+                        <div class="mt-5">
+                            <h3 class="heading">
+                                <span class="sentence1">Experience Level: {{ new_project.project.experience_level }}</span><br>
+                                <span class="sentence2">
+                                    <a href="#" data-toggle="modal" data-target="#projectModal{{ new_project.project.id }}">
+                                        {{ new_project.project.title }}
+                                    </a>
+                                </span>
+                                <br>
+                                <span class="text1">Expected date of completion:</span>
+                                <br>
+                                <span class="text1 ml-2">{{ new_project.project.expected_date.strftime('%B %d, %Y') }}</span>
+                            </h3>
+                            <div class="mt-5">
+                                <h6 class="mb-0">Milestone completed:</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ new_project.project.milestone_status }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add the following code inside the {% for new_project in new_projects %} loop -->
+                <!-- Define the modal structure -->
+                <div class="modal fade" id="projectModal{{ new_project.project.id }}" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel{{ new_project.project.id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="projectModalLabel{{ new_project.project.id }}">{{ new_project.project.title }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {{ new_project.project.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="accessModalRequest" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Javascript%20Level%201B"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accessModalRequestJS" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Javascript%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accessModalRequestJava" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Java%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestHTML" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20HTML/CSS%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestGithub1A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Github%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestHTML1B" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20HTML/CSS%20Level%201B"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestPhysics1A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Physics%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestPhysics1B" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Physics%20Level%201B"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestBlender1A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Blender%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestPython1B" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Python%20Level%201B"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestPython2A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Python%20Level%202A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestPython1A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Python%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accessModalRequestScratch1A" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Please email <a
+                        href="mailto:info@siliconvalley4u.com?Subject=Online%20Course%20Access%20for%20Scratch%20Level%201A"
+                        target="_top">info@siliconvalley4u.com</a> to request access to this course.
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <br>
+    <p class='text-muted'>
+    <ul class="list-group">
+        <button type="button" id="btnpost" class="btn btn-primary active" data-toggle="modal" data-target="#post">Write
+            a Post</button>
+    </ul>
+    </p>
+    {% if current_user.urlid == "Nexclap43194" %}
+    <p class='text-muted'>
+    <ul class="list-group">
+        <button type="button" id="btnUsers" class="btn btn-primary active" data-toggle="modal"
+            data-target="#exampleModalAdd">Add Filter</button>
+    </ul>
+    </p>
+    {% endif %}
+    {% if current_user.urlid == "Nexclap43194" %}
+    <p class='text-muted'>
+    <ul class="list-group">
+        <button type="button" id="btnUsers" class="btn btn-primary active" data-toggle="modal"
+            data-target="#exampleModalAdd2">Delete Filter</button>
+    </ul>
+    </p>
+    {% endif %}
+    {% if current_user.urlid == "Nexclap43194" %}
+    <p class='text-muted'>
+    <ul class="list-group">
+        <button type="button" id="btnUsers" class="btn btn-primary active" data-toggle="modal"
+            data-target=".courseLists">Course Detailer</button>
+    </ul>
+    </p>
+    {% endif %}
+  {% endif %}
